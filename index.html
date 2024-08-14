@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scouting Form</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            width: 300px; /* Set a consistent width for the container */
+        }
+
+        .divider, .divider-colored, .divider-colored-2 {
+            width: 80%; /* Ensure dividers are centered and not stretched */
+            height: 1px;
+            background-color: #ccc;
+            margin: 20px auto; /* Center the dividers */
+        }
+
+        .divider-colored {
+            background-color: #000000;
+        }
+
+        .divider-colored-2 {
+            background-color: #000000;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            margin-top: 10px;
+            box-sizing: border-box;
+            width: calc(100% - 20px); /* Adjust width to fit within the container */
+        }
+
+        .counter-group, .counter-group-2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .counter-group button, .counter-group-2 button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .counter {
+            font-size: 18px;
+            margin: 0 10px; /* Add space between the number and buttons */
+        }
+
+        .reset-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+        }
+
+        .intake-group, .endgame-container, .climb-container {
+            text-align: center;
+            width: 300px;
+        }
+
+        .intake-group label, .radio-group label {
+            margin-right: 10px;
+        }
+
+        .button-color-change {
+            background-color: #f0f0f0; /* Default color */
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+
+        .button-color-change.active {
+            background-color: #90ee90; /* Color when selected */
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .comments-group {
+            text-align: center;
+            width: 300px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            box-sizing: border-box;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scouting Form</h1>
+        <div class="divider"></div>
+
+        <div class="input-group">
+            <label for="teamNumber">Team Number</label>
+            <input type="number" id="teamNumber">
+        </div>
+        <div class="divider"></div>
+
+        <div class="input-group">
+            <label for="matchNumber">Match Number</label>
+            <input type="number" id="matchNumber">
+        </div>
+        <h2>Auto</h2>
+
+        <p>Speaker Notes</p>
+        <div class="divider divider-colored"></div>
+
+        <div class="counter-group">
+            <button onclick="decreaseCounter('speakerCounter')">Remove</button>
+            <span class="counter" id="speakerCounter">0</span>
+            <button onclick="increaseCounter('speakerCounter')">Add</button>
+        </div>
+        <button class="reset-btn" onclick="resetCounter('speakerCounter')">Reset</button>
+        <p>Amp Notes</p>
+        <div class="divider divider-colored"></div>
+
+        <div class="counter-group">
+            <button onclick="decreaseCounter('ampCounter')">Remove</button>
+            <span class="counter" id="ampCounter">0</span>
+            <button onclick="increaseCounter('ampCounter')">Add</button>
+        </div>
+        <button class="reset-btn" onclick="resetCounter('ampCounter')">Reset</button>
+        <p>Missed Shots</p>
+        <div class="divider divider-colored"></div>
+
+        <div class="counter-group">
+            <button onclick="decreaseCounter('missedCounter')">Remove</button>
+            <span class="counter" id="missedCounter">0</span>
+            <button onclick="increaseCounter('missedCounter')">Add</button>
+        </div>
+        <button class="reset-btn" onclick="resetCounter('missedCounter')">Reset</button>
+    </div>
+
+    <div class="container">
+        <h2>Teleop</h2>
+
+        <p>Speaker Notes</p>
+        <div class="divider divider-colored"></div>
+
+        <div class="counter-group">
+            <button onclick="decreaseCounter('speakerCounter2')">Remove</button>
+            <span class="counter" id="speakerCounter2">0</span>
+            <button onclick="increaseCounter('speakerCounter2')">Add</button>
+        </div>
+        <button class="reset-btn" onclick="resetCounter('speakerCounter2')">Reset</button>
+        <p>Amp Notes</p>
+        <div class="divider divider-colored"></div>
+
+        <div class="counter-group">
+            <button onclick="decreaseCounter('ampCounter2')">Remove</button>
+            <span class="counter" id="ampCounter2">0</span>
+            <button onclick="increaseCounter('ampCounter2')">Add</button>
+        </div>
+        <button class="reset-btn" onclick="resetCounter('ampCounter2')">Reset</button>
+        <p>Missed Shots</p>
+        <div class="divider divider-colored"></div>
+
+        <div class="counter-group">
+            <button onclick="decreaseCounter('missedCounter2')">Remove</button>
+            <span class="counter" id="missedCounter2">0</span>
+            <button onclick="increaseCounter('missedCounter2')">Add</button>
+        </div>
+        <button class="reset-btn" onclick="resetCounter('missedCounter2')">Reset</button>
+
+        <!-- New "How Intake?" Section -->
+        <p>How Intake?</p>
+        <div class="intake-group">
+            <div class="intake-options">
+                <label><input type="radio" name="intake2" value="ground"> Ground</label>
+                <label><input type="radio" name="intake2" value="source"> Source</label>
+            </div>
+            <button class="reset-btn" onclick="resetIntake2()">Reset</button>
+        </div>
+    </div>
+
+    <!-- New "Endgame" Section -->
+    <div class="endgame-container">
+        <h1>Endgame</h1>
+
+        <p>Did the robot break?</p>
+        <button class="button-color-change" onclick="toggleBreakStatus(this)">No</button>
+        <div class="divider divider-colored"></div>
+
+        <p>Trap Notes</p>
+        <div class="divider divider-colored"></div>
+
+        <div class="counter-group">
+            <button onclick="decreaseCounter('trapCounter')">Remove</button>
+            <span class="counter" id="trapCounter">0</span>
+            <button onclick="increaseCounter('trapCounter')">Add</button>
+        </div>
+        <button class="reset-btn" onclick="resetCounter('trapCounter')">Reset</button>
+    </div>
+
+    <!-- New "Climb" Section -->
+    <div class="climb-container">
+        <h1>Climb</h1>
+
+        <p>Climb Type</p>
+        <div class="radio-group">
+            <label><input type="radio" name="climb" value="team"> Team</label>
+            <label><input type="radio" name="climb" value="alone"> Alone</label>
+            <label><input type="radio" name="climb" value="none"> None</label>
+        </div>
+        <button class="reset-btn" onclick="resetClimb()">Reset</button>
+        <div class="divider divider-colored"></div>
+    </div>
+
+    <!-- New "Spotlight" Section -->
+    <div class="container">
+        <h2>Spotlight</h2>
+
+        <div class="counter-group">
+            <button onclick="decreaseCounter('spotlightCounter')">Remove</button>
+            <span class="counter" id="spotlightCounter">0</span>
+            <button onclick="increaseCounter('spotlightCounter')">Add</button>
+        </div>
+        <button class="reset-btn" onclick="resetCounter('spotlightCounter')">Reset</button>
+        <div class="divider divider-colored"></div>
+    </div>
+
+    <!-- New "Comments" Section -->
+    <div class="comments-group">
+        <h2>Comments</h2>
+        <textarea id="comments" placeholder="Enter your comments here..."></textarea>
+    </div>
+
+    <script>
+        function increaseCounter(id) {
+            let counter = document.getElementById(id);
+            counter.textContent = parseInt(counter.textContent) + 1;
+        }
+
+        function decreaseCounter(id) {
+            let counter = document.getElementById(id);
+            if (parseInt(counter.textContent) > 0) {
+                counter.textContent = parseInt(counter.textContent) - 1;
+            }
+        }
+
+        function resetCounter(id) {
+            document.getElementById(id).textContent = 0;
+        }
+
+        function resetIntake2() {
+            document.querySelector('input[name="intake2"]:checked').checked = false;
+        }
+
+        function toggleBreakStatus(button) {
+            button.classList.toggle('active');
+            button.textContent = button.classList.contains('active') ? 'Yes' : 'No';
+        }
+
+        function resetClimb() {
+            const climbRadios = document.querySelectorAll('input[name="climb"]');
+            climbRadios.forEach(radio => radio.checked = false);
+        }
+    </script>
+</body>
+</html>
